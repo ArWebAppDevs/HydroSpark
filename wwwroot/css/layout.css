@@ -1,0 +1,189 @@
+﻿namespace HydroSpark.wwwroot.css {
+.navbar
+
+{
+    padding: 15px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+    .nav-link:hover, .nav-link.active {
+        color: #ffc107 !important;
+    }
+
+/* Hero Section with Your Image */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background: url('https://img.freepik.com/free-photo/people-job-corona-virus-pandemic_342744-125.jpg?ga=GA1.1.261583280.1739093506&semt=ais_hybrid') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Hero Title Letter-by-Letter Animation */
+@keyframes typingEffect {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blinkCursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4); /* Softer shadow */
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    border-right: 4px solid #fff; /* Smooth cursor */
+    padding-right: 8px;
+    opacity: 0; /* Starts hidden for fade-in effect */
+    transform: translateY(20px); /* Starts slightly below for smooth slide-in */
+    animation: typingEffect 4s steps(40, end) forwards, fadeIn 1s ease-in forwards, cursorBlink 0.7s infinite;
+}
+
+/* Typing Effect */
+@keyframes typingEffect {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Fade-In Effect */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Starts below */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Slide to normal position */
+    }
+}
+
+/* Cursor Blinking Animation */
+@keyframes cursorBlink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Hover Effect: Subtle Text Scaling */
+.hero-title:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+.hero .btn {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+    .hero .btn:hover {
+        background-color: #ff9200;
+        transform: scale(1.05);
+    }
+
+/* Search Bar */
+.search-input {
+    border-radius: 20px;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+    .search-input:focus {
+        border-color: #ffc107;
+        background-color: #222;
+        color: white;
+    }
+
+/* Buttons */
+.btn-outline-light, .btn-warning {
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+    .btn-outline-light:hover {
+        background-color: #ffc107;
+        color: #000;
+    }
+
+    .btn-warning:hover {
+        background-color: #ff9200;
+    }
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .search-input {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
