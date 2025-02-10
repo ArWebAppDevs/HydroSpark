@@ -6,11 +6,14 @@ namespace HydroSpark.Controllers
 {
     public class HomeController : Controller
     {
+        private AppDbContext _context;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -30,7 +33,12 @@ namespace HydroSpark.Controllers
             new Item { Id = 5, Name = "Item 5", Description = "This is item 5", Price = 60.99 },
             // Add more items as necessary
         };
+            User user = new User { UserName = "Ak", Password = "Ak@123" };
+            _context.Add(user);
+            _context.SaveChanges();
+  
             return View(items);
+
         }
 
         public IActionResult Privacy()
