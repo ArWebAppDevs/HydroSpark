@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HydroSpark")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+775511e2ce30ef11328de2ae98be756b621035f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9caa7b4c1a4517d3e9c970dda5b8b048607266fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("HydroSpark")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HydroSpark")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

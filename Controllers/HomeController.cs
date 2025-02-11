@@ -41,16 +41,16 @@ namespace HydroSpark.Controllers
 
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        // public IActionResult Privacy()
+        // {
+        //     return View();
+        // }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        // public IActionResult Error()
+        // {
+        //     return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        // }
 
         [HttpGet("signup")]
         public IActionResult register()
@@ -79,6 +79,8 @@ namespace HydroSpark.Controllers
                 User user = new User { Email = email, Password = password };
                 _context.Users.Add(user);
                 _context.SaveChanges();
+                TempData["success"] = "Sucessfully Register";
+                return RedirectToAction("Index");
             }
 
             if (!cnfPassword.Equals(password))
@@ -107,15 +109,17 @@ namespace HydroSpark.Controllers
             if (userExists == false)
             {
                 TempData["msg"] = "Username or Password Incorrect";
-                return View();
             }
             else
             {
+                HttpContext.Session.SetString("user", email);
                 return RedirectToAction("");
             }
 
             return View();
 
         }
+        
+
     }
 }

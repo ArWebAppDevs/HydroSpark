@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<HydroSpark.Models.Item>
 @{
     ViewData["Title"] = "Home Page";
+    var successMessage = TempData["success"];
 }
 
 
@@ -115,7 +116,16 @@
 </head>
 
 <body>
+    @if (successMessage != null)
+    {
+        <script type="text/javascript">
+            // Show alert with the success message
+            alert('@successMessage');
 
+            // After the alert is closed, reload the page to clear TempData
+            window.location.reload();
+        </script>
+    }
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-overlay">

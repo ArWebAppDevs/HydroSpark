@@ -3,9 +3,8 @@
     "",
     "\\Controllers",
     "\\Models",
-    "\\Views",
-    "\\Views\\Home"
+    "\\Views"
   ],
-  "SelectedNode": "\\HydroSpark.csproj",
+  "SelectedNode": "\\Controllers",
   "PreviewInSolutionExplorer": false
 }
