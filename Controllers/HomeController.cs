@@ -33,10 +33,10 @@ namespace HydroSpark.Controllers
             new Item { Id = 5, Name = "Item 5", Description = "This is item 5", Price = 60.99 },
             // Add more items as necessary
         };
-            User user = new User { UserName = "Ak", Password = "Ak@123" };
-            _context.Add(user);
-            _context.SaveChanges();
-  
+            //User user = new User { email = "Ak", Password = "Ak@123" };
+            //_context.Add(user);
+            //_context.SaveChanges();
+
             return View(items);
 
         }
@@ -50,6 +50,72 @@ namespace HydroSpark.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet("signup")]
+        public IActionResult register()
+        {
+
+            return View();
+
+        }
+
+        [HttpPost("signup")]
+        public IActionResult register(IFormCollection form)
+        {
+            string email = form["Email"];
+            string password = form["Password"];
+            string cnfPassword = form["cnfPassword"];
+            bool userExists = _context.Users
+                             .Any(u => u.Email == email);
+            Console.WriteLine(userExists);
+            if (userExists == true)
+            {
+                TempData["msg"] = "User Exists";
+                return View();
+            }
+            if (form["cnfPassword"].Equals(form["Password"]))
+            {
+                User user = new User { Email = email, Password = password };
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            }
+
+            if (!cnfPassword.Equals(password))
+            {
+                TempData["msg"] = "Password and confirm password not matching";
+            }
+
+            return View();
+
+        }
+        [HttpGet("signin")]
+        public IActionResult signin()
+        {
+
+            return View();
+
+        }
+
+        [HttpPost("signin")]
+        public IActionResult signin(IFormCollection form)
+        {
+            string email = form["Email"];
+            string password = form["Password"];
+            bool userExists = _context.Users
+                             .Any(u => u.Email == email && u.Password == password);
+            if (userExists == false)
+            {
+                TempData["msg"] = "Username or Password Incorrect";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("");
+            }
+
+            return View();
+
         }
     }
 }
