@@ -95,12 +95,9 @@ namespace HydroSpark.Controllers
 
         }
 
-        public IActionResult ShowPassword()
-        {
-            return View();
-        }
 
-        [HttpPost()]
+
+        [HttpPost("/error")]
         public String error()
         {
             return "User is not authorize to do operations";
