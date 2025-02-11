@@ -134,8 +134,14 @@ namespace HydroSpark.Controllers
 
 
 
-        [Route("removeEmployee")]
+        [HttpGet("removeEmployee")]
         public String RemoveEmployee()
+        {
+            return "Removing Employee";
+        }
+
+        [HttpPost("removeEmployee")]
+        public String RemoveEmployee(IFormCollection form)
         {
             return "Removing Employee";
         }
