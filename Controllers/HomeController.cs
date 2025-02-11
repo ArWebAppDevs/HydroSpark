@@ -113,13 +113,28 @@ namespace HydroSpark.Controllers
             else
             {
                 HttpContext.Session.SetString("user", email);
+                TempData["user"]= email;
                 return RedirectToAction("");
             }
 
             return View();
+        }
+
+
+        [HttpGet("profile")]
+        public IActionResult Profile(IFormCollection form)
+        {
+            string user = HttpContext.Session.GetString("user");
+            if (user == null)
+            {
+                return RedirectToAction("signin");
+            }
+            var currentUser = _context.Users.Where(u => u.Email == user);
+            TempData["currUser"] = currentUser;
+
+            return View();
 
         }
-        
 
     }
 }

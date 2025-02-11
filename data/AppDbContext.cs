@@ -24,9 +24,6 @@ public class AppDbContext : DbContext
         // You can configure relationships, indexes, etc. here
     }
 
-    internal void SaveChanges()
-    {
-        throw new NotImplementedException();
-    }
+
 
 }

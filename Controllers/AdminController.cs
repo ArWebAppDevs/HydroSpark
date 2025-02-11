@@ -54,7 +54,7 @@ namespace HydroSpark.Controllers
             }
             else
             {
-                HttpContext.Session.SetString("user", email);
+                HttpContext.Session.SetString("employee", email);
                 return RedirectToAction("/admin/");
             }
 
@@ -66,7 +66,7 @@ namespace HydroSpark.Controllers
         public IActionResult AddEmployee()
         {
 
-            String user = HttpContext.Session.GetString("user");
+            String user = HttpContext.Session.GetString("employee");
             if (user == null)
             {
                 return Redirect("/admin/signin");
@@ -139,7 +139,7 @@ namespace HydroSpark.Controllers
         public IActionResult RemoveEmployee()
         {
             TempData["msg"] = null;
-            String user = HttpContext.Session.GetString("user");
+            String user = HttpContext.Session.GetString("employee");
             if (user == null)
             {
                 return Redirect("/admin/signin");
@@ -194,7 +194,7 @@ namespace HydroSpark.Controllers
             TempData["msg"] = null;
             return View();
 
-            String user = HttpContext.Session.GetString("user");
+            String user = HttpContext.Session.GetString("employee");
             if (user == null)
             {
                 return Redirect("/admin/signin");
@@ -250,5 +250,7 @@ namespace HydroSpark.Controllers
             return View();
 
         }
+
+        
     }
 }
