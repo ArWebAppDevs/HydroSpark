@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using HydroSpark.Models;
+
+
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -17,7 +19,14 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Role>()
            .HasOne(r => r.Employee)
            .WithMany(e => e.Roles)
-           .HasForeignKey(r => r.EmployeeId);
+           .HasForeignKey(r => r.EmployeeId)
+           .OnDelete(DeleteBehavior.Cascade); ;
         // You can configure relationships, indexes, etc. here
     }
+
+    internal void SaveChanges()
+    {
+        throw new NotImplementedException();
+    }
+
 }

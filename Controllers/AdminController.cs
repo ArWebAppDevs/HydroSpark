@@ -136,20 +136,62 @@ namespace HydroSpark.Controllers
 
 
         [HttpGet("removeEmployee")]
-        public String RemoveEmployee()
+        public IActionResult RemoveEmployee()
         {
-            return "Removing Employee";
+            TempData["msg"] = null;
+            String user = HttpContext.Session.GetString("user");
+            if (user == null)
+            {
+                return Redirect("/admin/signin");
+            }
+            var employee = _context.Employee
+                .Include(e => e.Roles)
+                .FirstOrDefault(e => e.Email == user);
+
+            bool chq = false;
+            foreach (Role r in employee.Roles)
+            {
+                if (r.RoleName.ToLower().Equals("owner"))
+                {
+                    chq = true;
+                    break;
+                }
+                Console.WriteLine(r.RoleName);
+            }
+            if (chq == false)
+            {
+                return RedirectToAction("/employee/error");
+            }
+            else
+            {
+                return View(); ;
+            }
+
+            return View();
         }
 
         [HttpPost("removeEmployee")]
-        public String RemoveEmployee(IFormCollection form)
+        public IActionResult RemoveEmployee(IFormCollection form)
         {
-            return "Removing Employee";
+            string email = form["Email"];
+            var employee = _context.Employee.Where(e => e.Email == email);
+            if (employee == null)
+            {
+                TempData["msg"] = "No Employee Exist with this Email";
+            }
+            else
+            {
+
+                _context.Employee.Remove((Employee)employee);
+                TempData["msg"] = "Employee Removed SuccessFully";
+            }
+            return View();
         }
 
         [HttpGet("addProduct")]
         public IActionResult addProduct()
         {
+            TempData["msg"] = null;
             return View();
 
             String user = HttpContext.Session.GetString("user");
@@ -179,28 +221,34 @@ namespace HydroSpark.Controllers
             {
                 return View(); ;
             }
-            
+
         }
 
         [HttpPost("addProduct")]
         public IActionResult addProduct(IFormCollection form)
         {
-            TempData["msg"]=null;
+
             string ProductName = form["ProductName"];
             string Category = form["Category"];
             string Description = form["Description"];
             IFormFile PrdImage = form.Files["ProductImage"];
-            Console.WriteLine("Qksabsdnfbkjfn  " +ProductName);
-            
+            Console.WriteLine("Qksabsdnfbkjfn  " + ProductName);
+
             string PrdImgUrl = "";
-            var product = new Products{ProductName = ProductName, Category = Category
-                                        ,Description = Description, ProductImgUrl = PrdImgUrl};
-            
+            var product = new Products
+            {
+                ProductName = ProductName,
+                Category = Category
+                                        ,
+                Description = Description,
+                ProductImgUrl = PrdImgUrl
+            };
+
             _context.Products.Add(product);
             _context.SaveChanges();
             TempData["msg"] = "Product has been added successfully!";
             return View();
-            
+
         }
     }
 }
