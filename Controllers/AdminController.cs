@@ -1,3 +1,4 @@
+using Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,7 +78,7 @@ namespace HydroSpark.Controllers
             bool chq = false;
             foreach (Role r in employee.Roles)
             {
-                if (r.RoleName.ToLower().Equals("admin"))
+                if (r.RoleName.ToLower().Equals("owner"))
                 {
                     chq = true;
                     break;
@@ -146,5 +147,60 @@ namespace HydroSpark.Controllers
             return "Removing Employee";
         }
 
+        [HttpGet("addProduct")]
+        public IActionResult addProduct()
+        {
+            return View();
+
+            String user = HttpContext.Session.GetString("user");
+            if (user == null)
+            {
+                return Redirect("/admin/signin");
+            }
+            var employee = _context.Employee
+                .Include(e => e.Roles)
+                .FirstOrDefault(e => e.Email == user);
+
+            bool chq = false;
+            foreach (Role r in employee.Roles)
+            {
+                if (r.RoleName.ToLower().Equals("owner") || r.RoleName.ToLower().Equals("admin"))
+                {
+                    chq = true;
+                    break;
+                }
+                Console.WriteLine(r.RoleName);
+            }
+            if (chq == false)
+            {
+                return RedirectToAction("/employee/error");
+            }
+            else
+            {
+                return View(); ;
+            }
+            
+        }
+
+        [HttpPost("addProduct")]
+        public IActionResult addProduct(IFormCollection form)
+        {
+            TempData["msg"]=null;
+            string ProductName = form["ProductName"];
+            string Category = form["Category"];
+            string Description = form["Description"];
+            IFormFile PrdImage = form.Files["ProductImage"];
+            Console.WriteLine("Qksabsdnfbkjfn  " +ProductName);
+            
+            string PrdImgUrl = "";
+            var product = new Products{ProductName = ProductName, Category = Category
+                                        ,Description = Description, ProductImgUrl = PrdImgUrl};
+            
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            TempData["msg"] = "Product has been added successfully!";
+            return View();
+            
+        }
     }
 }
