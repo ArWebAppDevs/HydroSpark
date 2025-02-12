@@ -193,7 +193,6 @@ namespace HydroSpark.Controllers
         public IActionResult addProduct()
         {
             TempData["msg"] = null;
-            return View();
 
             String user = HttpContext.Session.GetString("employee");
             if (user == null)
