@@ -35,6 +35,7 @@ namespace HydroSpark.Controllers
         [HttpGet("signin")]
         public IActionResult signin()
         {
+            Console.WriteLine("Here1");
 
             return View();
 
@@ -43,7 +44,7 @@ namespace HydroSpark.Controllers
         [HttpPost("signin")]
         public IActionResult signin(IFormCollection form)
         {
-
+            Console.WriteLine("Here2");
             string email = form["Email"];
             string password = form["Password"];
             bool userExists = _context.Employee
@@ -55,7 +56,7 @@ namespace HydroSpark.Controllers
             else
             {
                 HttpContext.Session.SetString("employee", email);
-                return RedirectToAction("/admin/");
+                return RedirectToAction("");
             }
 
             return View();
@@ -251,6 +252,6 @@ namespace HydroSpark.Controllers
 
         }
 
-        
+
     }
 }
