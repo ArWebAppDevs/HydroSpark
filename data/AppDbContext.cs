@@ -20,7 +20,13 @@ public class AppDbContext : DbContext
            .HasOne(r => r.Employee)
            .WithMany(e => e.Roles)
            .HasForeignKey(r => r.EmployeeId)
-           .OnDelete(DeleteBehavior.Cascade); ;
+           .OnDelete(DeleteBehavior.Cascade);
+
+           modelBuilder.Entity<Products>()
+                        .Property(p => p.Price)
+                        .HasColumnType("decimal(18, 2)");  // Specifies precision and scale
+
+            base.OnModelCreating(modelBuilder);
         // You can configure relationships, indexes, etc. here
     }
 

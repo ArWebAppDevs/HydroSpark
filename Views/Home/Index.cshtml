@@ -1,4 +1,7 @@
-﻿@model IEnumerable<HydroSpark.Models.Item>
+﻿@model IEnumerable<HydroSpark.Models.Products>
+
+
+
 @{
     ViewData["Title"] = "Home Page";
     var successMessage = TempData["success"];
@@ -137,17 +140,22 @@
 
     <!-- Dynamic Cards Container -->
     <section class="card-container">
-        @foreach (var item in Model)
-        {
-            <div class="card">
-                <h5>@item.Name</h5>
-                <p>@item.Description</p>
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <p>@item.ProductName</p>
+            <h5><img src="@item.ProductImgUrl" alt="@item.ProductName" width="100" /></h5>
+            <p>@item.Description</p>
+            @if (item.GetType().GetProperty("Price") != null) 
+            {
                 <p><strong>Price:</strong> $@item.Price</p>
-                <button class="btn btn-warning">viewport Details</button>
-            </div>
-        }
-    </section>
+            }
+            <button class="btn btn-warning">View Details</button>
+        </div>
+    }
+</section>
 
+    
     <!-- Bootstrap JS -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {

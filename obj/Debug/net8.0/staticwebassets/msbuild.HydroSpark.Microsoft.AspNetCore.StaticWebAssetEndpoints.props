@@ -40,13 +40,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\HydroSpark.ou2mu44e1d.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-8OWzUv\u002BLioxEOjulakHrNZNpSoaZ/LXf6grL9lbpjME="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1128"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228OWzUv\u002BLioxEOjulakHrNZNpSoaZ/LXf6grL9lbpjME=\u0022"},{"Name":"Last-Modified","Value":"Tue, 11 Feb 2025 19:11:12 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1128"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228OWzUv\u002BLioxEOjulakHrNZNpSoaZ/LXf6grL9lbpjME=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Feb 2025 19:17:00 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HydroSpark/HydroSpark.ou2mu44e1d.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\HydroSpark.ou2mu44e1d.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ou2mu44e1d"},{"Name":"integrity","Value":"sha256-8OWzUv\u002BLioxEOjulakHrNZNpSoaZ/LXf6grL9lbpjME="},{"Name":"label","Value":"_content/HydroSpark/HydroSpark.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1128"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228OWzUv\u002BLioxEOjulakHrNZNpSoaZ/LXf6grL9lbpjME=\u0022"},{"Name":"Last-Modified","Value":"Tue, 11 Feb 2025 19:11:12 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1128"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228OWzUv\u002BLioxEOjulakHrNZNpSoaZ/LXf6grL9lbpjME=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Feb 2025 19:17:00 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HydroSpark/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>

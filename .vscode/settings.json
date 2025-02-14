@@ -1,1 +1,16 @@
-{}
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MSSQL",
+            "name": "DefaultConnection",
+            "connectString": "\"Server=(localdb)\\mssqllocaldb; Database=HydroSpark_Test; Trusted_Connection=True; MultipleActiveResultSets=true"
+        }
+    ]
+}

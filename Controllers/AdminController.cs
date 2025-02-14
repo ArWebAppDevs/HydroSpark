@@ -227,29 +227,57 @@ namespace HydroSpark.Controllers
         [HttpPost("addProduct")]
         public IActionResult addProduct(IFormCollection form)
         {
+            string productName = form["ProductName"];
+            string category = form["Category"];
+            string description = form["Description"];
+            decimal price = 0;
 
-            string ProductName = form["ProductName"];
-            string Category = form["Category"];
-            string Description = form["Description"];
-            IFormFile PrdImage = form.Files["ProductImage"];
-            Console.WriteLine("Qksabsdnfbkjfn  " + ProductName);
+            if (!decimal.TryParse(form["Price"], out price))
+            {
+                TempData["msg"] = "Invalid price format!";
+                return RedirectToAction("Products");
+            }
 
-            string PrdImgUrl = "";
+            IFormFile prdImage = form.Files["ProductImage"];
+            string prdImgUrl = "";
+
+            if (prdImage != null && prdImage.Length > 0)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "products");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(prdImage.FileName);
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    prdImage.CopyTo(fileStream);
+                }
+
+                // **Generate Publicly Accessible URL**
+                string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+                prdImgUrl = $"{baseUrl}/images/products/{uniqueFileName}";
+            }
+
             var product = new Products
             {
-                ProductName = ProductName,
-                Category = Category
-                                        ,
-                Description = Description,
-                ProductImgUrl = PrdImgUrl
+                ProductName = productName,
+                Category = category,
+                Description = description,
+                ProductImgUrl = prdImgUrl,
+                Price = price
             };
 
             _context.Products.Add(product);
             _context.SaveChanges();
-            TempData["msg"] = "Product has been added successfully!";
-            return View();
 
+            TempData["msg"] = "Product has been added successfully!";
+            return RedirectToAction("Products");
         }
+
 
         
     }
